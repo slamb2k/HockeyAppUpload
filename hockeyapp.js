@@ -8,17 +8,6 @@ var buildNumber = tl.getVariable("Build.BuildNumber");
 console.log("Build Number: " + buildNumber);
 console.log("Install Package: " + installPackage);
 
-//Compress output directory
-/*
-var fs = require("fs");
-var zip = new require('node-zip')();
-zip.file(packageDirectory);
-var data = zip.generate({base64:false,compression:'DEFLATE'});
-fs.writeFileSync('upload.zip', data, 'binary');
-
-console.log("Zipped file: " + fs.file); //, Size: $($zipFile.length)"
-*/
-
 var request = require('request');
 
 var options = {
