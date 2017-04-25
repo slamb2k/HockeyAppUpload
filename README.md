@@ -15,5 +15,17 @@ The build task takes four input parameters:
 
 The build task is created using the [tfx-cli](https://github.com/Microsoft/tfs-cli) which is installed using npm.
 
-![Image of tfx](https://github.com/slamb2k/HockeyAppUpload/images/tfx.png)
+![Image of tfx](/images/tfx.png)
+
+**tfx build tasks create** was used to scaffold the tasks and then the NodeJS code was written to release the binary to the HockeyApp API.
+
+The build task was then uploaded to VSTS using **tfx build tasks upload** and was available to be added to release definitions. 
+
+For the customer a release definition was created and two environments were added to represent a test environment for internal distribution and a production environment for the final release. These environments were represented on HockeyApp as two applications. Upon release, an email would be sent to users assigned to these applications in HockeyApp and a download page would allow the manual retrieval of the release. The customer used another Powershell script to access the HockeyApp API and download the application as part of an automated process for deployment.
+
+![Image of tfx](/images/hockeyappreleasedefinition.png)
+
+Once this was release definition was in place a CI build would automatically trigger on each commit and upon successful build a CD release would occur to the Test environment in HockeyApp. An approval email would fire to the team to approve the release to production. Once the build was tested this could be approved and the same build would be released to the Production environment. This release management pipeline could be visualised on a dashboard in Visual Studio Team Services like so:
+
+![Image of tfx](/images/hockeyappdashboard.png)
 
