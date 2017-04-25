@@ -29,3 +29,7 @@ Once this was release definition was in place a CI build would automatically tri
 
 ![Image of tfx](/images/hockeyappdashboard.png)
 
+When the application was released to Hockey app the inclusion of release notes would show these on the manual download page:
+
+![Image of tfx](/images/hockeyappdownload.png)
+
