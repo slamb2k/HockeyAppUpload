@@ -2,7 +2,7 @@
     "id": "79da2ac8-fe31-4310-81d7-762ed4516c3b",
     "name": "hockeyAppUpload",
     "friendlyName": "HockeyApp Upload",
-    "description": "Upload Binary Package to HockeyApp 1.0.28",
+    "description": "Upload Binary Package to HockeyApp",
     "helpMarkDown": "[More Information](https://github.com/slamb2k/HockeyAppUpload)",
     "category": "Deploy",
     "visibility": [
@@ -12,7 +12,7 @@
     "version": {
         "Major": 1,
         "Minor": 0,
-        "Patch": 28
+        "Patch": 49
     },
     "demands": [],
     "minimumAgentVersion": "1.83.0",
@@ -25,41 +25,45 @@
     ],
     "inputs": [
         {
-            "name": "appID",
+            "name": "HockeyAppAppID",
             "type": "string",
             "label": "HockeyApp App ID",
             "defaultValue": "",
             "required": true,
-          
             "helpMarkDown": "The App ID. You can get this from HockeyApp",
-      
             "groupName": "hockeyAppOptions"
         },
-                {
-            "name": "apiToken",
+        {
+            "name": "HockeyAppApiToken",
             "type": "string",
             "label": "HockeyApp API Token",
             "defaultValue": "",
             "required": true,
-          
             "helpMarkDown": "A valid HockeyApp API token.",
-      
             "groupName": "hockeyAppOptions"
         },
         {
-            "name": "installPackage",
+            "name": "InstallPackage",
             "type": "filePath",
             "label": "Install Package",
-            "defaultValue": "/",
+            "defaultValue": "",
             "required": true,
-            "helpMarkDown": "Relative path from repo root of the solution(s) or MSBuild project to zip and upload. Unless you changed your package output directory, leave this alone."
+            "helpMarkDown": "Relative path from repo root of the solution(s) or MSBuild project to upload. If the pattern matches multiple files only the first one will be sent."
+        },
+        {
+            "name": "ReleaseNotes",
+            "type": "filePath",
+            "label": "Release Notes",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "Relative path from repo root of the solution(s) or MSBuild project to the release notes for this release."
         }
     ],
-    "instanceNameFormat": "Upload $(packageId) to HockeyApp 1.0.10",
+    "instanceNameFormat": "Upload $(packageId) to HockeyApp",
     "execution": {
-		"Node": {
-		  "target": "$(currentDirectory)\\hockeyapp.js",
-		  "argumentFormat": ""
-		}
+        "Node": {
+            "target": "$(currentDirectory)\\hockeyapp.js",
+            "argumentFormat": ""
+        }
     }
 }
